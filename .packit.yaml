@@ -1,0 +1,42 @@
+actions: &Actions-Package-rust2rpm
+  fix-spec-file:
+    - sh -c 'rust2rpm ${PACKIT_UPSTREAM_PACKAGE_NAME}'
+  create-archive:
+    - sh -c 'spectool -g -s0 ${PACKIT_DOWNSTREAM_PACKAGE_NAME}.spec'
+    - sh -c 'echo ${PACKIT_UPSTREAM_PACKAGE_NAME}-${PACKIT_PROJECT_VERSION}.crate'
+  get-current-version:
+    - sh -c 'rpmspec -q --qf "%{Version}" --srpm ${PACKIT_DOWNSTREAM_PACKAGE_NAME}.spec'
+
+packages:
+  rust-logos:
+    paths: [ rust-logos ]
+    specfile_path: rust-logos.spec
+    upstream_package_name: logos
+    downstream_package_name: rust-logos
+  rust-logos-derive:
+    paths: [ rust-logos-derive ]
+    specfile_path: rust-logos-derive.spec
+    upstream_package_name: logos-derive
+    downstream_package_name: rust-logos-derive
+  rust-logos-codegen:
+    paths: [ rust-logos-codegen ]
+    specfile_path: rust-logos-codegen.spec
+    upstream_package_name: logos-codegen
+    downstream_package_name: rust-logos-codegen
+  rust-ariadne:
+    paths: [ rust-ariadne ]
+    specfile_path: rust-ariadne.spec
+    upstream_package_name: ariadne
+    downstream_package_name: rust-ariadne
+
+srpm_build_deps:
+  - rust2rpm
+
+jobs:
+  - job: copr_build
+    trigger: commit
+    update_release: false
+    owner: lecris
+    project: rust-logos
+    targets:
+      - fedora-rawhide

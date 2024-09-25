@@ -1,0 +1,3 @@
+*.src.rpm
+rust-*/*.crate
+*-fix-metadata-auto.diff
