@@ -12,6 +12,9 @@ Summary:        Create ridiculously fast Lexers
 License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/logos
 Source:         %{crates_source}
+# Manually created patch for downstream crate metadata changes
+# * Bump ariadne dependency to 0.4
+Patch:          logos-fix-metadata.diff
 
 BuildRequires:  cargo-rpm-macros >= 24
 

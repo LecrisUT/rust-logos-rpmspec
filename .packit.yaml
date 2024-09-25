@@ -13,6 +13,9 @@ packages:
     specfile_path: rust-logos.spec
     upstream_package_name: logos
     downstream_package_name: rust-logos
+    actions: &Actions-Package-no-rust2rpm
+      <<: *Actions-Package-rust2rpm
+      fix-spec-file: []
   rust-logos-derive:
     paths: [ rust-logos-derive ]
     specfile_path: rust-logos-derive.spec

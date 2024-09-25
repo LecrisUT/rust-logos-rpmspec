@@ -1,0 +1,4 @@
+[package]
+cargo-toml-patch-comments = [
+    "Bump ariadne dependency to 0.4",
+]
